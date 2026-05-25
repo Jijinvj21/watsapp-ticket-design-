@@ -32,7 +32,7 @@
     .page {
       width: 1080px;
       min-height: 1080px;
-      background-color: #0b0705;
+      background: radial-gradient(50% 60% at 50% 0%, rgba(209, 125, 15, 0.2) 0%, rgba(131, 63, 8, 0) 100%), #0b0705;
       /* Dark background behind card */
       padding: 160px 40px 20px;
       position: relative;
@@ -60,7 +60,7 @@
       gap: 10px;
       color: #FFFFFF;
       /* background: url('/Container.png') center/cover no-repeat; */
-      background-color: #1a1a1a;
+      background-color: #7171713D;
       border-radius: 24px;
       padding: 110px 40px 40px;
       position: relative;
@@ -70,6 +70,7 @@
       height: 773px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      isolation: isolate;
     }
 
     /* ── Card slot hole ── */
@@ -81,8 +82,20 @@
       width: 160px;
       height: 30px;
       border-radius: 15px;
-      background-color: #0f0b08;
-      box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6);
+      /* No background color here, just the shadow and border */
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.9), 0 1px 1px rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(0, 0, 0, 0.6);
+    }
+
+    /* This pseudo-element punches the hole through the container */
+    .slot::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-color: #271806;
+      mix-blend-mode: destination-out;
+      z-index: -1;
     }
 
     /* ── Header ── */
