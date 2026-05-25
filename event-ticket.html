@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=640" />
+  <title>Event Ticket</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      font-family: 'Montserrat', 'Inter', 'Segoe UI', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Page wrapper (mimics the PDF page) ── */
+    .page {
+      width: 1080px;
+      min-height: 1080px;
+      background-color: #0b0705;
+      /* Dark background behind card */
+      padding: 160px 40px 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── Lanyard clip image ── */
+    .lanyard {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 202px;
+      object-fit: contain;
+      z-index: 10;
+    }
+
+    /* ── Main badge card ── */
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: #FFFFFF;
+      /* background: url('/Container.png') center/cover no-repeat; */
+      background-color: #1a1a1a;
+      border-radius: 24px;
+      padding: 110px 40px 40px;
+      position: relative;
+      top: -8;
+      overflow: hidden;
+      width: 640px;
+      height: 773px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ── Card slot hole ── */
+    .slot {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: #0f0b08;
+      box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .event-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 24px;
+      leading-trim: none;
+      line-height: 100%;
+      letter-spacing: 0px;
+      text-align: center;
+      vertical-align: middle;
+      color: #FFFFFF;
+    }
+
+    /* ── Divider line ── */
+    .divider {
+      width: 100%;
+      height: 2px;
+      margin: 0 0 30px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .divider img {
+      width: 85%;
+      height: 2px;
+      opacity: 0.6;
+    }
+
+    /* ── Event info ── */
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .event-details-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .event-details-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      leading-trim: none;
+      line-height: 100%;
+      letter-spacing: 0;
+      vertical-align: middle;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    /* ── QR Code ── */
+    .qr-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+      z-index: 2;
+    }
+
+    .qr-code {
+      width: 276px;
+      height: 276px;
+      /* background-color: white; */
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    /* ── Athlete info ── */
+    .athlete-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .athlete-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 40px;
+      leading-trim: none;
+      line-height: 100%;
+      letter-spacing: -0.02em;
+      text-align: center;
+      vertical-align: middle;
+      color: #FFFFFF;
+    }
+
+    .athlete-tag {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 25.07px;
+      leading-trim: none;
+      line-height: 140%;
+      letter-spacing: 0px;
+      vertical-align: middle;
+      color: #B3B3B3;
+    }
+
+    /* ── Intersect decorative image ── */
+    .intersect {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 210px;
+      height: 380px;
+      object-fit: contain;
+      z-index: 1;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- Lanyard clip -->
+    <img class="lanyard" src="./ChatGPT%20Image%20Nov%2023,%202025,%2010_37_41%20AM%201%20(1).png" alt="Lanyard clip" />
+
+    <!-- Badge card -->
+    <div class="container">
+      <!-- Card slot hole -->
+      <div class="slot"></div>
+
+      <!-- Header -->
+      <div class="header">
+        <div class="event-title">One8 Presents No Parking<br>by peakst8</div>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider">
+        <img src="./Line.png" alt="Divider" />
+      </div>
+
+      <!-- Event Info -->
+      <div class="event-info">
+        <div class="event-details-row">
+          <span class="event-details-text">11 - 12 Jan</span>
+          <span class="event-details-text">•</span>
+          <span class="event-details-text">Bangalore</span>
+        </div>
+      </div>
+
+      <!-- QR Code -->
+      <div class="qr-container">
+        <img class="qr-code" src="./Group 1410264849.png" alt="QR Code" />
+      </div>
+
+      <!-- Athlete Info -->
+      <div class="athlete-info">
+        <div class="athlete-name">Delhi Titans</div>
+        <div class="athlete-tag">Club Category</div>
+      </div>
+
+      <!-- Intersect decorative image (if any) -->
+      <img class="intersect" src="./Intersect.png" alt="" />
+    </div>
+  </div>
+</body>
+
+</html>
