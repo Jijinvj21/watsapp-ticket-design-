@@ -234,8 +234,9 @@
       align-items: center;
       position: relative;
       background:
-        radial-gradient(circle at 0 36px, white 14px, #3CCB7F 14.5px) top left / 51% 100% no-repeat,
-        radial-gradient(circle at 100% 36px, white 14px, #3CCB7F 14.5px) top right / 51% 100% no-repeat;
+        radial-gradient(circle at 0 36px, white 14px, transparent 14.5px) top left / 51% 100% no-repeat,
+        radial-gradient(circle at 100% 36px, white 14px, transparent 14.5px) top right / 51% 100% no-repeat,
+        linear-gradient(90deg, #0469D4 0%, #002750 97.54%);
       border-bottom-left-radius: 24px;
       border-bottom-right-radius: 24px;
     }
@@ -246,7 +247,7 @@
       top: 0;
       left: 14px;
       right: 14px;
-      border-top: 1px dashed rgba(0, 0, 0, 0.12);
+      border-top: 1px dashed rgba(255, 255, 255, 0.2);
     }
 
     .booked-text {
@@ -254,14 +255,18 @@
       font-weight: 400;
       font-style: normal;
       font-size: 12px;
+      leading-trim: none;
       line-height: 16px;
       letter-spacing: 0.3px;
-      color: rgba(30, 60, 80, 0.5);
+      color: rgba(255, 255, 255, 0.8);
       margin-bottom: 6px;
     }
 
     .logo-image {
-      height: 36px;
+      width: 85.74220275878906px;
+      height: 24px;
+      opacity: 1;
+      transform: rotate(0deg);
       object-fit: contain;
     }
   </style>
